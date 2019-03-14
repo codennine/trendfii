@@ -3,6 +3,9 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import re
+import time
+
+start = time.time()
 
 # recuperando data para pesquisar
 # o formato deve ser yyyy-mm-dd
@@ -47,6 +50,7 @@ while total > 0:
 sources = []
 
 for link in links_noticias:
+	print('Buscanco %s'%(link.text))
 	href = link.find('a')['href']
 	page = requests.get(PREFIX+href)
 
@@ -66,6 +70,11 @@ for link in links_noticias:
 sources.reverse()
 
 [print(a) for a in sources]
+
+end = time.time()
+
+print('-'*50)
+print('Execution time: %f'%((end-start)))
 
 
 
