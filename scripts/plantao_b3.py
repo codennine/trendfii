@@ -1,9 +1,20 @@
 #coding=utf8
 import requests
 from bs4 import BeautifulSoup
+import sys
+import re
+
+# recuperando data para pesquisar
+# o formato deve ser yyyy-mm-dd
+try:
+	data = sys.argv[1]
+except IndexError:
+	print('Informe uma data para pesquisar')
+	exit();
 
 
-URL_FII = 'http://www2.bmfbovespa.com.br/Agencia-Noticias/ListarNoticias.aspx?idioma=pt-br&q=fii&tipoFiltro=3&periodoDe=2019-03-07&periodoAte=2019-03-07&pg='
+PREFIX = 'http://www2.bmfbovespa.com.br/Agencia-Noticias/'
+URL_FII = 'http://www2.bmfbovespa.com.br/Agencia-Noticias/ListarNoticias.aspx?idioma=pt-br&q=fii&tipoFiltro=3&periodoDe=%s&periodoAte=%s&pg='%(data, data)
 QTD_PER_PAGE = 20
 PAGE = 1
 _URL = URL_FII+str(PAGE)
@@ -26,13 +37,36 @@ while total > 0:
 	page = requests.get(_URL)
 	soup = BeautifulSoup(page.content, 'html.parser')
 	k = soup.find('ul', {'id': 'linksNoticias'}).find_all('li')
+	links_noticias = links_noticias + k
 	print(len(k))
 	total = total - len(k)
 
 
-
 # 
 
-# print(links_noticias)
-# print(k)
-# print(k == links_noticias)
+sources = []
+
+for link in links_noticias:
+	href = link.find('a')['href']
+	page = requests.get(PREFIX+href)
+
+	soup = BeautifulSoup(page.content, 'html.parser')
+	link_documento = soup.find('div', {'id': 'contentNoticia'}).find('pre')
+	index = link_documento.text.find('&flnk')
+
+	if index != -1:
+		h = link_documento.text[0:index]
+		h = h.replace('visualizar', 'exibir')
+		sources.append({
+			'title': link.text,
+			'doc' : h
+		})
+
+
+sources.reverse()
+
+[print(a) for a in sources]
+
+
+
+	
