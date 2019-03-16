@@ -5,6 +5,13 @@ import sys
 import re
 import time
 
+
+def codigo_ativo(title):
+	found = re.findall('\(\w+\)', title)
+	if len(found) > 0:
+		return found[0].replace('(', '').replace(')', '')
+	return None
+
 start = time.time()
 
 # recuperando data para pesquisar
@@ -48,9 +55,9 @@ while total > 0:
 # 
 
 sources = []
-
+count = 0
 for link in links_noticias:
-	print('Buscanco %s'%(link.text))
+	print('Buscando[%d] %s | Ativo %s11'%(count, link.text, codigo_ativo(link.text)))
 	href = link.find('a')['href']
 	page = requests.get(PREFIX+href)
 
@@ -65,6 +72,7 @@ for link in links_noticias:
 			'title': link.text,
 			'doc' : h
 		})
+	count += 1
 
 
 sources.reverse()
