@@ -30,6 +30,8 @@ PAGE = 1
 _URL = URL_FII+str(PAGE)
 page = requests.get(_URL)
 
+ativos = {}
+
 print('Requesting page %d'%(PAGE))
 print(_URL)
 
@@ -57,6 +59,9 @@ while total > 0:
 sources = []
 count = 0
 for link in links_noticias:
+
+	cod_ativo = codigo_ativo(link.text)
+	
 	print('Buscando[%d] %s | Ativo %s11'%(count, link.text, codigo_ativo(link.text)))
 	href = link.find('a')['href']
 	page = requests.get(PREFIX+href)
