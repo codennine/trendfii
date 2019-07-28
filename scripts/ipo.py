@@ -2,6 +2,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 # URL_IPO = 'http://www.b3.com.br/pt_br/produtos-e-servicos/solucoes-para-emissores/ofertas-publicas/ofertas-em-andamento/'
 URL_IPO = 'http://www.bmfbovespa.com.br/pt_br/servicos/ofertas-publicas/ofertas-em-andamento/'
 
