@@ -1,7 +1,13 @@
 #coding=utf8
 import requests
 from bs4 import BeautifulSoup
+import os 
+from os import path
 
+root = path.dirname(path.abspath(__file__))
+
+
+print('RUNNING AT: '+root)
 
 # URL_IPO = 'http://www.b3.com.br/pt_br/produtos-e-servicos/solucoes-para-emissores/ofertas-publicas/ofertas-em-andamento/'
 URL_IPO = 'http://www.bmfbovespa.com.br/pt_br/servicos/ofertas-publicas/ofertas-em-andamento/'
