@@ -7,9 +7,9 @@ import time
 
 
 def codigo_ativo(title):
-	found = re.findall('\(\w+\)', title)
+	found = re.findall('(\(\w+)', title)
 	if len(found) > 0:
-		return found[0].replace('(', '').replace(')', '')
+		return found[0].replace('(', '').replace(')', '')[0:4]
 	return None
 
 start = time.time()
