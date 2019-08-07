@@ -5,8 +5,15 @@ from bs4 import BeautifulSoup
 URL_LIST_FIIS = 'http://bvmf.bmfbovespa.com.br/Fundos-Listados/FundosListados.aspx?tipoFundo=imobiliario&Idioma=pt-br'
 
 page = requests.get(URL_LIST_FIIS)
+
 soup = BeautifulSoup(page.content, 'html.parser')
+
+print(soup.prettify())
+
 trs = soup.find_all('tr')
+
+print(trs)
+
 table = [
 	['Razão Social', 'Fundo', 'Segmento', 'Código']
 ]
@@ -22,6 +29,8 @@ for tr in trs[1:]:
 			data = td.text
 		row.append(data)
 	table.append(row)
+else:
+	print('SEM ELEMENTOS')
 
 for fii in table[1:]:
 	print(fii[3]+'11')
