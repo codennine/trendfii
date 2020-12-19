@@ -5,6 +5,13 @@ import sys
 import re
 import time
 
+# nova url
+# https://sistemasweb.b3.com.br/PlantaoNoticias/Noticias/Index?agencia=18
+# https://sistemasweb.b3.com.br/PlantaoNoticias/Noticias/ListarTitulosNoticias?agencia=18&palavra=fii&dataInicial=2020-09-30&dataFinal=2020-09-30
+# https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
+# https://developer.twitter.com/en/docs/authentication/oauth-1-0a/authorizing-a-request#:~:text=The%20oauth_nonce%20parameter%20is%20a,has%20been%20submitted%20multiple%20times.
+# https://developer.twitter.com/en/docs/authentication/oauth-1-0a/creating-a-signature
+
 
 def codigo_ativo(title):
 	found = re.findall('(\(\w+)', title)
