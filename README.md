@@ -12,6 +12,7 @@ Os principais datasets são:
 - [Clube FII](https://clubefii.com.br)
 - [FIIS.com.br](https://fiis.com.br)
 - [Suno Research](https://sunoresearch.com.br)
+- [B3](http://www.b3.com.br)
 
 Além disso, em cada página de FII mostraremos alguns posts e também vídeos, que serão carregador do YouTube.
 
