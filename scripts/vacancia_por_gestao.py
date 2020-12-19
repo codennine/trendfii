@@ -31,6 +31,8 @@ for fii in table[1:]:
 	td = soup.find_all('td')
 
 	print('GETTING %s\n'%(cod))
+	print(td)
+	print('\n\n\n')
 
 	handle = open('gestores/'+cod+'.html', 'a+')
 	if len(td) >= 11:
