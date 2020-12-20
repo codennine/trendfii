@@ -2,6 +2,7 @@ env/
 venv/
 bin/
 *.pyc
+.env
 
 
 static/
