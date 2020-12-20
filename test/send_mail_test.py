@@ -18,7 +18,7 @@ FROM_NAME = os.getenv('FROM_NAME')
 context = ssl.create_default_context()
 
 msg = MIMEMultipart()
-msg['From'] = '{}, <{}>'.format(FROM_NAME, EMAIL_FROM)
+msg['From'] = '{} <{}>'.format(FROM_NAME, EMAIL_FROM)
 msg['To'] = EMAIL_TO
 msg['Subject'] = 'Email com anexo 2'
 # body = 'Testando coisas com python em texo'
