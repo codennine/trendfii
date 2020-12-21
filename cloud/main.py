@@ -1,6 +1,7 @@
 import base64
 from scripts.plantao_b3_v2 import list_news
 from datetime import datetime
+from scripts.mailer import send_mail
 
 def search_fii_reports(event, context):
   # PubSub event ->  {'@type': 'type.googleapis.com/google.pubsub.v1.PubsubMessage', 'attributes': None, 'data': 'eyJzdG9ja3MiOiBbIkFCQ1AiXX0='}
@@ -27,5 +28,11 @@ def search_fii_reports(event, context):
     'formatted_today': today.strftime('%d/%m/%Y'),
     'content': content
   })
+
+  subject = 'Plantão de FIIs - {formatted_today}'.format_map({'formatted_today': today.strftime('%d/%m/%Y')})
+  print(news)
+  print(subject)
+  
+  send_mail('projetoscodesilva@gmail.com', 'edigleyssonsilva@gmail.com', subject, message, 'Projetos Codesilva')
 
   return 'reading reports fro PLANTAO'
