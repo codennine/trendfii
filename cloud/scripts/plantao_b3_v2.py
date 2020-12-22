@@ -29,7 +29,6 @@ def list_news(start_date='2020-12-14', end_date='2020-12-14'):
   for item in items:
     if '(C)' in str(item['headline']).upper():
       continue
-    item['view_doc'] = URL_VIEWER + str(item['id'])
     
     try:
       detail_page = requests.get(URL_DETAIL.format_map({
@@ -43,6 +42,10 @@ def list_news(start_date='2020-12-14', end_date='2020-12-14'):
       item['view_doc'] = url_doc
     except Exception as e:
       print('Error: {}'.format(str(e)))
+      item['view_doc'] = URL_DETAIL.format_map({
+        'idNoticia': item['id'],
+        'dataNoticia': start_date
+      })
       continue
 
   return items
