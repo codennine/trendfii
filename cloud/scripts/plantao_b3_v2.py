@@ -23,9 +23,10 @@ def list_news(start_date='2020-12-14', end_date='2020-12-14'):
   })
   URL_VIEWER = 'https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id='
   URL_DETAIL = 'https://sistemasweb.b3.com.br/PlantaoNoticias/Noticias/Detail?idNoticia={idNoticia}&agencia=18&dataNoticia={dataNoticia}'
-
   page = requests.get(URL, verify=False)
   items = [x['NwsMsg'] for x in json.loads(page.content) if not '(C)' in x['NwsMsg']['headline']]
+  print('finding {}'.format(URL))
+  print(items)
   for item in items:
     if '(C)' in str(item['headline']).upper():
       continue
@@ -34,7 +35,7 @@ def list_news(start_date='2020-12-14', end_date='2020-12-14'):
       detail_page = requests.get(URL_DETAIL.format_map({
         'idNoticia': item['id'],
         'dataNoticia': start_date
-      }))
+      }), verify=False)
 
       soup = BeautifulSoup(detail_page.content, 'html.parser')
       pre = soup.find('pre', {'id': 'conteudoDetalhe'})

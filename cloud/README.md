@@ -6,7 +6,7 @@
 
 # Testando
 
-`gcloud functions call search_fii_reports --data '{"topic":"search-fii-reports","message":"Hello World!"}'`
+`gcloud functions call search_fii_reports --data '{"topic":"search-fii-reports","message":"Hello World!", "data": ["ABCP11"]}'`
 
 
 # ver logs
