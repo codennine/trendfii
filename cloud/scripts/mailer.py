@@ -16,7 +16,6 @@ EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 def send_mail(email_from, to, subject, body_message, from_name=None):
   TODAY = datetime.utcnow()
-  print('\n\nEMAIL USER: {} // EMAIL PASSWORD: {}\n\n'.format(EMAIL_USER, EMAIL_PASSWORD))
   # Create a secure SSL context
   context = ssl.create_default_context()
   from_str = '{} <{}>'.format(from_name, email_from) if not from_name is None else email_from 

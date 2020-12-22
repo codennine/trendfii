@@ -2,12 +2,16 @@ import base64
 from scripts.plantao_b3_v2 import list_news
 from datetime import datetime
 from scripts.mailer import send_mail
+from datetime import datetime, timedelta
 
 def search_fii_reports(event, context):
+  import pytz
   # PubSub event ->  {'@type': 'type.googleapis.com/google.pubsub.v1.PubsubMessage', 'attributes': None, 'data': 'eyJzdG9ja3MiOiBbIkFCQ1AiXX0='}
+  today = datetime.utcnow().replace(tzinfo=pytz.timezone('America/Sao_Paulo')) - timedelta(hours=3)
+  find_date = today.strftime('%Y-%m-%d')
+  print('\n{}\n'.format(today.strftime('%Y-%m-%d %H:%M:%S')))
   data = base64.b64decode(event['data']).decode('utf-8')
-  news = list_news()
-  today = datetime.utcnow()
+  news = list_news(start_date=find_date, end_date=find_date)
   content = '<ul>'
   # {'IdAgencia': 18, 'content': None, 'dateTime': '2020-12-14 09:10:30', 'headline': 'FII OURI FOF (OUFF) Informe Mensal - 11/2020', 'id': 1319258, 'view_doc': 'https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id=1319258'}
   for new in news:
@@ -33,6 +37,6 @@ def search_fii_reports(event, context):
   print(news)
   print(subject)
   
-  send_mail('projetoscodesilva@gmail.com', 'edigleyssonsilva@gmail.com', subject, message, 'Projetos Codesilva')
+  send_mail('projetoscodesilva@gmail.com', 'edigleyssonsilva@gmail.com', subject, message, 'Edigleysson Silva')
 
   return 'reading reports fro PLANTAO'
