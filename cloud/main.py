@@ -12,8 +12,7 @@ def search_fii_reports(event, context):
   data = base64.b64decode(event['data']).decode('utf-8')
   print('event.data')
   print(data)
-  # news = list_news(start_date=find_date, end_date=find_date)
-  news = list_news(start_date='2020-12-21', end_date='2020-12-21')
+  news = list_news(start_date=find_date, end_date=find_date)
   content = '<ul>'
   # {'IdAgencia': 18, 'content': None, 'dateTime': '2020-12-14 09:10:30', 'headline': 'FII OURI FOF (OUFF) Informe Mensal - 11/2020', 'id': 1319258, 'view_doc': 'https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id=1319258'}
   for new in news:
