@@ -10,6 +10,11 @@ def search_fii_reports(event, context):
   today = datetime.utcnow().replace(tzinfo=pytz.timezone('America/Sao_Paulo')) - timedelta(hours=3)
   find_date = today.strftime('%Y-%m-%d')
   data = json.loads(base64.b64decode(event['data']).decode('utf-8'))
+
+  if 'base_date' in data:
+    # base_date - data em formato YYYY-MM-DD
+    find_date = data['base_date']
+
   news = list_news(start_date=find_date, end_date=find_date)
   print('event.data')
   print(data)
@@ -42,5 +47,3 @@ def search_fii_reports(event, context):
   print(subject)
   
   send_mail('projetoscodesilva@gmail.com', 'edigleyssonsilva@gmail.com', subject, message, 'Edigleysson Silva')
-
-  return 'reading reports fro PLANTAO'
