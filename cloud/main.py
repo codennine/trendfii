@@ -27,6 +27,11 @@ def search_fii_reports(event, context):
     content += '<li><a href="{view_doc}">{headline}</a></li>'.format_map(new)
   content += '</ul>'
 
+  if len(news) == 0:
+    content = '''
+    <p>Nenhum documento foi encontrado para os ativos {stocks} no dia {find_date}</p>
+    '''.format_map({'stocks': ', '.join(data['stocks']), 'find_date': find_date})
+
   message = '''\
     <html>
       <body>
