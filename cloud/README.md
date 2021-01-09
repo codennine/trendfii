@@ -1,6 +1,6 @@
 `gcloud auth login`
 
-`gcloud condif set project PROJECT_ID`
+`gcloud config set project PROJECT_ID`
 
 `gcloud functions deploy search_fii_reports --trigger-topic search-fii-reports --runtime python37`
 
