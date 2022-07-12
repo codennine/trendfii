@@ -1,0 +1,32 @@
+{
+  "name": "FII REPORT READER",
+  "description": "This extension format FII monthly reports to make it easier to read",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento*"],
+      "css": [
+        "style.css"
+      ],
+      "js": [
+        "utils.js",
+        "content-scripts.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
