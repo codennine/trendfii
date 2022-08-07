@@ -2,6 +2,10 @@ body {
   font-family: sans-serif !important;
 }
 
+a:first-child {
+  display: none;
+}
+
 table th {
   background: #333;
   color: white;

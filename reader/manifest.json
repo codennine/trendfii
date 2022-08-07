@@ -18,6 +18,7 @@
     {
       "matches": ["*://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento*"],
       "css": [
+        "css/bulma.min.css",
         "style.css"
       ],
       "js": [
